@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScanActivity"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:id="@+id/left_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2.5"
+        android:background="@drawable/logo_empy"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_quantity_docs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="end"
+            android:padding="5dp"
+            android:text="@string/txt_qantity_place"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_quantity_document"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="end"
+            android:padding="5dp"
+            android:text="@string/txt_qantity"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_ost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="end"
+            android:padding="5dp"
+            android:text="@string/res"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/center_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:background="@drawable/logo_empy">
+
+        <TextView
+            android:id="@+id/txt_quantity_pl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:padding="5dp"/>
+
+        <TextView
+            android:id="@+id/txt_quantity_places"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:padding="5dp"/>
+
+        <TextView
+            android:id="@+id/txt_ostatok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:padding="5dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/display_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="@drawable/logo_empy"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/scan_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:cursorVisible="false"
+            android:textStyle="bold"
+            android:layout_margin="50dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/txt_signal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_margin="30dp"
+            android:gravity="center"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

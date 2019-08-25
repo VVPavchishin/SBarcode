@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SBarcode</string>
+    <string name="download_btn">Download</string>
+    <string name="scan_button">Scan</string>
+    <string name="show_button">Show</string>
+    <string name="txt_qantity_place">Количество накладных</string>
+    <string name="txt_qantity">Количество мест</string>
+    <string name="res">Осталось</string>
+</resources>
