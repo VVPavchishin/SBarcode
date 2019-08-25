@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button startButton;
     private ProgressBar progressBar;
 
+
+    List<String> fileNames;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startButton.setOnClickListener(this);
 
         progressBar = findViewById(R.id.progressBar);
+        fileNames = new ArrayList<>();
     }
 
     @Override
@@ -57,22 +61,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void goToSecondPage(File[] files) {
-        List<String> fileNames = new ArrayList<>();
         int length = files.length;
         Log.d(TAG, length + "");
         for (File file : files){
             fileNames.add(file.getName());
         }
-        showProgressBar(length);
-
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         intent.putStringArrayListExtra(FILES_ARRAY, (ArrayList<String>) fileNames);
         startActivity(intent);
     }
 
-    private void showProgressBar(int length) {
-
-    }
 
     public ArrayList<File> listFiles(File dir) {
         ArrayList<File> files = new ArrayList<>();

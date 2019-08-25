@@ -120,24 +120,24 @@
 
         <EditText
             android:id="@+id/scan_text"
-            android:layout_width="match_parent"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="30sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:cursorVisible="false"
-            android:textStyle="bold"
             android:layout_margin="50dp"
-            android:gravity="center"/>
+            android:cursorVisible="false"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_signal"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_margin="30dp"
             android:gravity="center"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp" />
 
     </LinearLayout>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,12 +26,13 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     TextView quantityDocs;
     TextView quantityPlace;
     TextView lastPlace;
-    TextView infoFild;
+    TextView infoField;
 
     EditText scannerField;
-    HashSet<String> listDubl;
+    HashSet<String> listDuble;
 
     String scanValue;
+    int count;
 
 
     @Override
@@ -40,33 +42,37 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
         scannerField = findViewById(R.id.scan_text);
         scannerField.setOnClickListener(this);
+        scannerField.getBackground().mutate().
+                setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_ATOP);
 
         quantityDocs = findViewById(R.id.txt_quantity_pl);
         quantityPlace = findViewById(R.id.txt_quantity_places);
         lastPlace = findViewById(R.id.txt_ostatok);
-        infoFild = findViewById(R.id.txt_signal);
+        infoField = findViewById(R.id.txt_signal);
 
         Intent intent = getIntent();
         int docQuantity = intent.getIntExtra(DOC_QUANTITY, 0);
         ArrayList<String> namesPlace = intent.getStringArrayListExtra(LIST_PLACES);
-        listDubl = new HashSet<>(namesPlace);
+        listDuble = new HashSet<>(namesPlace);
         Log.d(TAG, docQuantity + "  ");
-        Log.d(TAG, listDubl + "  ");
+        Log.d(TAG, listDuble + "  ");
         quantityDocs.setText(docQuantity + "");
-        quantityPlace.setText(listDubl.size() + "");
-        lastPlace.setText(listDubl.size() + "");
+        quantityPlace.setText(listDuble.size() + "");
+        lastPlace.setText(listDuble.size() + "");
     }
 
     @Override
     public void onClick(View v) {
-       scanValue = String.valueOf(scannerField.getText());
+       scanValue = String.valueOf(scannerField.getText()).trim().substring(0, 8);
+        count = Integer.parseInt((String) lastPlace.getText());
         try {
-            Thread.sleep(100);
+            Thread.sleep(200);
+            scannerField.setText("");
+            scannerStart(listDuble, scanValue);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        scannerField.setText("");
-        scannerStart(listDubl, scanValue);
+
 
     }
 
@@ -74,15 +80,16 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     private void scannerStart(HashSet<String> listDublle, String scanValue) {
 
         for (String name : listDublle) {
-            if (name.contains(scanValue.trim().substring(0, 6))){
-               int count = Integer.parseInt((String) lastPlace.getText());
-               count--;
+            if (name.equals(scanValue)){
+                count--;
                 lastPlace.setText(count + "");
-                infoFild.setText(scanValue + " - " + name + " - " + scanValue.length() + " " + name.length());
-                infoFild.setBackgroundColor(Color.GREEN);
+                infoField.setText("Штрихкод найден! " + name);
+                infoField.setTextColor(Color.GREEN);
+                listDublle.remove(name);
+                break;
             } else {
-                infoFild.setText(scanValue + " - " + name + " - " + scanValue.length() + " " + name.length());
-                infoFild.setBackgroundColor(Color.RED);
+                infoField.setText("Штрихкод не найден!");
+                infoField.setTextColor(Color.RED);
             }
         }
     }
