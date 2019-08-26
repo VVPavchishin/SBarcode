@@ -54,11 +54,9 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         int docQuantity = intent.getIntExtra(DOC_QUANTITY, 0);
         ArrayList<String> namesPlace = intent.getStringArrayListExtra(LIST_PLACES);
         listDuble = new HashSet<>(namesPlace);
-        Log.d(TAG, docQuantity + "  ");
-        Log.d(TAG, listDuble + "  ");
-        quantityDocs.setText(docQuantity + "");
-        quantityPlace.setText(listDuble.size() + "");
-        lastPlace.setText(listDuble.size() + "");
+        quantityDocs.setText(String.valueOf(docQuantity));
+        quantityPlace.setText(String.valueOf(listDuble.size()));
+        lastPlace.setText(String.valueOf(listDuble.size()));
     }
 
     @Override
@@ -82,8 +80,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         for (String name : listDublle) {
             if (name.equals(scanValue)){
                 count--;
-                lastPlace.setText(count + "");
-                infoField.setText("Штрихкод найден! " + name);
+                lastPlace.setText(String.valueOf(count));
+                infoField.setText(String.format("Штрихкод найден! %s", name));
                 infoField.setTextColor(Color.GREEN);
                 listDublle.remove(name);
                 break;

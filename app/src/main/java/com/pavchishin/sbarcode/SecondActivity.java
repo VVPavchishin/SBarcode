@@ -68,9 +68,15 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.button_show:
                 for (String files : listFileNames) {
                     readFromSD(files);
-                    btnShow.setVisibility(View.INVISIBLE);
-                    btnScan.setVisibility(View.VISIBLE);
                 }
+                btnShow.setVisibility(View.INVISIBLE);
+                try {
+                    Thread.sleep(1000);
+                    btnScan.setVisibility(View.VISIBLE);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 break;
             case R.id.button_scan:
                 Intent intent = new Intent(SecondActivity.this, ScanActivity.class);
@@ -121,14 +127,11 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
                 String val = String.valueOf(workbook.getSheetAt(0).getRow(15).getCell(4));
                 //Log.d("tag", val);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                runOnUiThread(() -> {
 
-                        Button button = new Button(SecondActivity.this);
-                        button.setText(val);
-                        buttonLayout.addView(button);
-                    }
+                    Button button = new Button(SecondActivity.this);
+                    button.setText(val);
+                    buttonLayout.addView(button);
                 });
             } catch (IOException e) {
                 e.printStackTrace();

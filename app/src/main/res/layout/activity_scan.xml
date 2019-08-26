@@ -16,46 +16,19 @@
 
         <TextView
             android:id="@+id/txt_quantity_docs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginTop="25dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="end"
-            android:padding="5dp"
             android:text="@string/txt_qantity_place"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            style="@style/TextStyle"/>
 
         <TextView
             android:id="@+id/txt_quantity_document"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="end"
-            android:padding="5dp"
             android:text="@string/txt_qantity"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            style="@style/TextStyle" />
 
         <TextView
             android:id="@+id/txt_ost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="end"
-            android:padding="5dp"
             android:text="@string/res"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            style="@style/TextStyle" />
     </LinearLayout>
 
     <LinearLayout
@@ -68,43 +41,16 @@
 
         <TextView
             android:id="@+id/txt_quantity_pl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="25dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:gravity="end"
-            android:padding="5dp"/>
+            style="@style/TextStyle"
+            android:layout_marginTop="25dp" />
 
         <TextView
             android:id="@+id/txt_quantity_places"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:gravity="end"
-            android:padding="5dp"/>
+            style="@style/TextStyle"/>
 
         <TextView
             android:id="@+id/txt_ostatok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:gravity="end"
-            android:padding="5dp"/>
+            style="@style/TextStyle"/>
     </LinearLayout>
 
 
@@ -129,7 +75,10 @@
             android:inputType="textPersonName"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:importantForAutofill="no"
+            tools:targetApi="o"
+            tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/txt_signal"

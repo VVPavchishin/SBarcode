@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d(TAG, "Folder not found!");
         }
     }
-
     private void goToSecondPage(File[] files) {
         int length = files.length;
         Log.d(TAG, length + "");
@@ -70,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putStringArrayListExtra(FILES_ARRAY, (ArrayList<String>) fileNames);
         startActivity(intent);
     }
-
-
     public ArrayList<File> listFiles(File dir) {
         ArrayList<File> files = new ArrayList<>();
         for (File file : dir.listFiles()) {
