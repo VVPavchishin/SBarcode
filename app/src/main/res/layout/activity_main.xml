@@ -21,11 +21,10 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="500dp"
         android:layout_height="10dp"
+        style="@style/tallerBarStyle"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:indeterminate="false"
         android:layout_marginBottom="30dp" />
 </LinearLayout>

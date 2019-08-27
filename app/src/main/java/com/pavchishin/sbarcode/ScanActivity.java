@@ -3,6 +3,7 @@ package com.pavchishin.sbarcode;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         scannerField = findViewById(R.id.scan_text);
         scannerField.setOnClickListener(this);
@@ -86,7 +88,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                 listDublle.remove(name);
                 break;
             } else {
-                infoField.setText("Штрихкод не найден!");
+                infoField.setText(String.format("Штрихкод не найден! %s", scanValue));
                 infoField.setTextColor(Color.RED);
             }
         }

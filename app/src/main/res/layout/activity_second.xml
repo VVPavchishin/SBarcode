@@ -22,7 +22,8 @@
                 android:id="@+id/layout_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:gravity="center"/>
 
         </ScrollView>
     </LinearLayout>
@@ -42,7 +43,8 @@
                 android:id="@+id/layout_places"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:gravity="center"/>
 
         </ScrollView>
     </LinearLayout>

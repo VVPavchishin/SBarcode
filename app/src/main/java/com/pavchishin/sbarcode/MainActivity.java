@@ -2,10 +2,17 @@ package com.pavchishin.sbarcode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +22,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,10 +32,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button startButton;
     private ProgressBar progressBar;
-
+    Handler handler;
 
     List<String> fileNames;
+    File[] files;
 
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +48,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startButton.setOnClickListener(this);
 
         progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
         fileNames = new ArrayList<>();
+
+        handler = new Handler() {
+            public void handleMessage(Message msg) {
+                progressBar.setMax(files.length);
+                progressBar.setVisibility(View.VISIBLE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    progressBar.setProgressTintList(ColorStateList.valueOf(Color.WHITE));
+                }
+                progressBar.setProgress(msg.what);
+                if (msg.what == files.length){
+                    goToSecondPage(files);
+                    startButton.setEnabled(true);
+                }
+            }
+        };
     }
 
     @Override
     public void onClick(View v) {
+        startButton.setEnabled(false);
         loadStatus();
     }
 
+    public void downloadFile() {
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadStatus() {
-        Log.d(TAG, "Load status start!");
         File workDirPath = new File(Environment.getExternalStorageDirectory() + File.separator + FILE_DIR);
-        Log.d(TAG, Environment.getExternalStorageDirectory() + File.separator + FILE_DIR);
+
         if (workDirPath.exists()) {
-            Log.d(TAG, "Folder exist! ");
-            File[] files = listFiles(workDirPath).toArray(new File[0]);
-                goToSecondPage(files);
+            files = listFiles(workDirPath).toArray(new File[0]);
+            Thread t = new Thread(() -> {
+                for (int i = 1; i <= files.length; i++) {
+                    downloadFile();
+                    handler.sendEmptyMessage(i);
+                }
+            });
+            t.start();
 
         } else {
             Log.d(TAG, "Folder not found!");

@@ -3,9 +3,12 @@ package com.pavchishin.sbarcode;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -44,6 +47,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         btnShow = findViewById(R.id.button_show);
         btnShow.setOnClickListener(this);
@@ -70,12 +74,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                     readFromSD(files);
                 }
                 btnShow.setVisibility(View.INVISIBLE);
-                try {
-                    Thread.sleep(1000);
-                    btnScan.setVisibility(View.VISIBLE);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
+                btnScan.setVisibility(View.VISIBLE);
 
                 break;
             case R.id.button_scan:
@@ -119,6 +119,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                             listPlaceNames.add(list);
                             Button button = new Button(SecondActivity.this);
                             button.setText(list);
+                            button.setTextSize(20);
+                            button.setTextColor(Color.WHITE);
                             placeLayout.addView(button);
                         }
 
@@ -129,8 +131,10 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 //Log.d("tag", val);
                 runOnUiThread(() -> {
 
-                    Button button = new Button(SecondActivity.this);
+                    Button button = new Button(this);
                     button.setText(val);
+                    button.setTextSize(20);
+                    button.setTextColor(Color.WHITE);
                     buttonLayout.addView(button);
                 });
             } catch (IOException e) {
