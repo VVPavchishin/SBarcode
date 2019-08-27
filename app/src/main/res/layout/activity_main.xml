@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="@string/download_btn"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         />
 

@@ -74,16 +74,12 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                     readFromSD(files);
                 }
                 btnShow.setVisibility(View.INVISIBLE);
-
                 btnScan.setVisibility(View.VISIBLE);
-
                 break;
             case R.id.button_scan:
                 Intent intent = new Intent(SecondActivity.this, ScanActivity.class);
                 int numDocs = buttonLayout.getChildCount();
-                //int numPlace = placeLayout.getChildCount();
                 intent.putExtra(DOC_QUANTITY, numDocs);
-                //intent.putExtra(PLACE_QUANTITY, numPlace);
                 intent.putStringArrayListExtra(LIST_PLACES, listPlaceNames);
                 startActivity(intent);
                 break;
