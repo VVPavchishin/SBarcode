@@ -3,7 +3,7 @@
     <string name="download_btn">Начать</string>
     <string name="scan_button">Сканировать</string>
     <string name="show_button">Показать</string>
-    <string name="txt_qantity_place">Количество накладных</string>
-    <string name="txt_qantity">Количество мест</string>
+    <string name="txt_qantity_place">К-во накладных</string>
+    <string name="txt_qantity">К-во мест</string>
     <string name="res">Осталось</string>
 </resources>

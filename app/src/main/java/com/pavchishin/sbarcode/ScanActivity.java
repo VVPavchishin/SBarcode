@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,8 +23,17 @@ import static com.pavchishin.sbarcode.SecondActivity.LIST_PLACES;
 import static com.pavchishin.sbarcode.SecondActivity.PLACE_QUANTITY;
 
 import static com.pavchishin.sbarcode.MainActivity.TAG;
-public class ScanActivity extends AppCompatActivity implements View.OnClickListener{
+public class ScanActivity extends AppCompatActivity implements View.OnClickListener, SoundPool.OnLoadCompleteListener {
 
+    final int MAX_STREAMS = 5;
+
+    SoundPool sp;
+    int soundGood;
+    int soundBad;
+
+
+    int streamGood;
+    int streamBad;
 
 
     TextView quantityDocs;
@@ -31,6 +43,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
     EditText scannerField;
     HashSet<String> listDuble;
+
+    ImageView imageView;
 
     String scanValue;
     int count;
@@ -47,10 +61,19 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         scannerField.getBackground().mutate().
                 setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_ATOP);
 
+        sp = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
+        sp.setOnLoadCompleteListener(this);
+
+        soundGood = sp.load(this, R.raw.good, 1);
+        soundBad = sp.load(this, R.raw.bad, 1);
+
+
         quantityDocs = findViewById(R.id.txt_quantity_pl);
         quantityPlace = findViewById(R.id.txt_quantity_places);
         lastPlace = findViewById(R.id.txt_ostatok);
         infoField = findViewById(R.id.txt_signal);
+
+        imageView = findViewById(R.id.image_ok_not);
 
         Intent intent = getIntent();
         int docQuantity = intent.getIntExtra(DOC_QUANTITY, 0);
@@ -63,7 +86,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-       scanValue = String.valueOf(scannerField.getText()).trim().substring(0, 8);
+       scanValue = String.valueOf(scannerField.getText());
         count = Integer.parseInt((String) lastPlace.getText());
         try {
             Thread.sleep(200);
@@ -72,25 +95,31 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
-
 
     private void scannerStart(HashSet<String> listDublle, String scanValue) {
 
         for (String name : listDublle) {
-            if (name.equals(scanValue)){
+            if (scanValue.contains(name)){
                 count--;
                 lastPlace.setText(String.valueOf(count));
                 infoField.setText(String.format("Штрихкод найден! %s", name));
+                imageView.setImageResource(R.drawable.ok_im);
                 infoField.setTextColor(Color.GREEN);
                 listDublle.remove(name);
+                sp.play(soundGood, 1, 1, 0, 0, 1);
                 break;
             } else {
                 infoField.setText(String.format("Штрихкод не найден! %s", scanValue));
                 infoField.setTextColor(Color.RED);
+                imageView.setImageResource(R.drawable.not_ok_im);
+                sp.play(soundBad, 1, 1, 0, 0, 1);
             }
         }
+    }
+
+    @Override
+    public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+
     }
 }
