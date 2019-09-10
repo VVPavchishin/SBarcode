@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void loadStatus() {
         File workDirPath = new File(Environment.getExternalStorageDirectory() + File.separator + FILE_DIR);
-
+        Log.d(TAG, Environment.getExternalStorageDirectory() + File.separator + FILE_DIR);
         if (workDirPath.exists()) {
             files = listFiles(workDirPath).toArray(new File[0]);
             Thread t = new Thread(() -> {

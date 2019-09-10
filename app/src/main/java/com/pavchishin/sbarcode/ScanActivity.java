@@ -32,17 +32,13 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     int soundBad;
 
 
-    int streamGood;
-    int streamBad;
-
-
     TextView quantityDocs;
     TextView quantityPlace;
     TextView lastPlace;
     TextView infoField;
 
     EditText scannerField;
-    HashSet<String> listDuble;
+    HashSet<String> listDouble;
 
     ImageView imageView;
 
@@ -78,10 +74,10 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         int docQuantity = intent.getIntExtra(DOC_QUANTITY, 0);
         ArrayList<String> namesPlace = intent.getStringArrayListExtra(LIST_PLACES);
-        listDuble = new HashSet<>(namesPlace);
+        listDouble = new HashSet<>(namesPlace);
         quantityDocs.setText(String.valueOf(docQuantity));
-        quantityPlace.setText(String.valueOf(listDuble.size()));
-        lastPlace.setText(String.valueOf(listDuble.size()));
+        quantityPlace.setText(String.valueOf(listDouble.size()));
+        lastPlace.setText(String.valueOf(listDouble.size()));
     }
 
     @Override
@@ -91,22 +87,22 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         try {
             Thread.sleep(200);
             scannerField.setText("");
-            scannerStart(listDuble, scanValue);
+            scannerStart(listDouble, scanValue);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void scannerStart(HashSet<String> listDublle, String scanValue) {
+    private void scannerStart(HashSet<String> listDoublle, String scanValue) {
 
-        for (String name : listDublle) {
+        for (String name : listDoublle) {
             if (scanValue.contains(name)){
                 count--;
                 lastPlace.setText(String.valueOf(count));
                 infoField.setText(String.format("Штрихкод найден! %s", name));
                 imageView.setImageResource(R.drawable.ok_im);
                 infoField.setTextColor(Color.GREEN);
-                listDublle.remove(name);
+                listDoublle.remove(name);
                 sp.play(soundGood, 1, 1, 0, 0, 1);
                 break;
             } else {
@@ -119,7 +115,5 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-
-    }
+    public void onLoadComplete(SoundPool soundPool, int sampleId, int status) { }
 }

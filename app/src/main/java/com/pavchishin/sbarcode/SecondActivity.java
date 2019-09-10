@@ -117,6 +117,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                             button.setText(list);
                             button.setTextSize(20);
                             button.setTextColor(Color.WHITE);
+                            button.setBackgroundColor(Color.BLACK);
                             placeLayout.addView(button);
                         }
 
@@ -131,6 +132,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                     button.setText(val);
                     button.setTextSize(20);
                     button.setTextColor(Color.WHITE);
+                    button.setBackgroundColor(Color.BLACK);
                     buttonLayout.addView(button);
                 });
             } catch (IOException e) {
