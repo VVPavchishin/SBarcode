@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">SBarcode</string>
-    <string name="download_btn">Начать</string>
+    <string name="download_btn">DOWNLOAD</string>
     <string name="scan_button">Сканировать</string>
     <string name="show_button">Показать</string>
     <string name="txt_qantity_place">К-во накладных</string>
     <string name="txt_qantity">К-во мест</string>
     <string name="res">Осталось</string>
+    <string name="ok_notok">TODO</string>
 </resources>

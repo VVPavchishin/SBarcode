@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,6 +29,19 @@
             android:id="@+id/txt_ost"
             android:text="@string/res"
             style="@style/TextStyle" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/show_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"/>
+                </ScrollView>
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -73,7 +85,7 @@
             android:cursorVisible="false"
             android:ems="10"
             android:gravity="center"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -84,7 +96,8 @@
         <ImageView
             android:id="@+id/image_ok_not"
             android:layout_width="200dp"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            android:contentDescription="@string/ok_notok" />
 
         <TextView
             android:id="@+id/txt_signal"
